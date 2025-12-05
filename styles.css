@@ -4,7 +4,9 @@
    ======================================== */
 
 /* CSS Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -23,16 +25,16 @@
     --color-text: #FFFFFF;
     --color-text-muted: #B8A8D0;
     --color-success: #00E676;
-    
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, #5800DD 0%, #9000FF 100%);
     --gradient-gold: linear-gradient(135deg, #FFCB47 0%, #FFE082 100%);
     --gradient-cta: linear-gradient(135deg, #FFCB47 0%, #FFA726 100%);
     --gradient-hero: radial-gradient(ellipse at top center, #320079 0%, #1A0138 50%, #0D0018 100%);
-    
+
     /* Typography */
     --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -40,13 +42,13 @@
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
     --spacing-2xl: 4rem;
-    
+
     /* Border Radius */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
-    
+
     /* Shadows */
     --shadow-glow: 0 0 30px rgba(88, 0, 221, 0.4);
     --shadow-gold: 0 0 30px rgba(255, 203, 71, 0.4);
@@ -161,9 +163,12 @@ a {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: var(--shadow-gold);
     }
+
     50% {
         box-shadow: 0 0 50px rgba(255, 203, 71, 0.8);
     }
@@ -259,6 +264,7 @@ a {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -278,6 +284,7 @@ a {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -325,6 +332,11 @@ a {
 .feature-icon {
     color: var(--color-success);
     font-weight: bold;
+}
+
+/* Hero Game Visuals - Hidden on Mobile */
+.hero-games {
+    display: none;
 }
 
 .hero-note {
@@ -722,19 +734,19 @@ a {
     .container {
         padding: 0 var(--spacing-md);
     }
-    
+
     .trust-badges {
         grid-template-columns: repeat(4, 1fr);
     }
-    
+
     .promo-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .games-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .cta-buttons {
         flex-direction: row;
         justify-content: center;
@@ -748,67 +760,177 @@ a {
     .container {
         padding: 0 var(--spacing-lg);
     }
-    
+
     .logo img {
         height: 40px;
     }
-    
+
     .header-cta {
         padding: 0.75rem 1.5rem;
         font-size: 0.9375rem;
     }
-    
+
     .hero {
         padding: 8rem var(--spacing-lg) var(--spacing-2xl);
     }
-    
+
     .promo-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    
+
     .games-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: var(--spacing-md);
     }
-    
+
     .game-card img {
         width: 100px;
         height: 100px;
     }
-    
+
     .game-name {
         font-size: 0.875rem;
     }
-    
+
     .steps-grid {
         flex-direction: row;
         justify-content: center;
         align-items: stretch;
     }
-    
+
     .step-arrow {
         display: flex;
         align-items: center;
         transform: rotate(0deg);
     }
-    
+
     .footer-content {
         flex-direction: row;
         justify-content: space-between;
     }
-    
+
     .footer-brand {
         text-align: left;
     }
-    
+
     .footer-brand img {
         margin: 0 0 var(--spacing-xs);
     }
 }
 
 /* ========================================
+   Hero Game Visuals - Tablet & Desktop (700px+)
+   ======================================== */
+@media (min-width: 700px) {
+    .hero-games {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    .hero-games-left {
+        left: 2%;
+    }
+
+    .hero-games-right {
+        right: 2%;
+    }
+
+    .hero-game-card {
+        width: 90px;
+        height: 90px;
+        background: rgba(37, 0, 80, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-xs);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        animation: floatGame 3s ease-in-out infinite;
+    }
+
+    .hero-games-left .hero-game-card:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    .hero-games-left .hero-game-card:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+    .hero-games-left .hero-game-card:nth-child(4) {
+        animation-delay: 1.5s;
+    }
+
+    .hero-games-right .hero-game-card:nth-child(1) {
+        animation-delay: 0.25s;
+    }
+
+    .hero-games-right .hero-game-card:nth-child(2) {
+        animation-delay: 0.75s;
+    }
+
+    .hero-games-right .hero-game-card:nth-child(3) {
+        animation-delay: 1.25s;
+    }
+
+    .hero-games-right .hero-game-card:nth-child(4) {
+        animation-delay: 1.75s;
+    }
+
+    .hero-game-card:hover {
+        transform: scale(1.1);
+        border-color: var(--color-gold);
+        box-shadow: var(--shadow-gold);
+    }
+
+    .hero-game-card img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+    }
+
+    @keyframes floatGame {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+}
+
+/* ========================================
    Responsive - Large Desktop
    ======================================== */
+/* ========================================
+   Responsive - Mobile Fix for CTA Buttons
+   ======================================== */
+@media (max-width: 480px) {
+    .btn-large {
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .hero-content .btn-cta,
+    .steps-cta .btn-cta {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
 @media (min-width: 1280px) {
     .games-grid {
         grid-template-columns: repeat(6, 1fr);
