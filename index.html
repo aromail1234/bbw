@@ -30,7 +30,7 @@
             <a href="https://bitbetwin.cc" class="logo" id="header-logo">
                 <img src="nextbbw.webp" alt="BitBetWin Logo" width="220" height="50">
             </a>
-            <a href="https://bitbetwin.cc/registration/" class="btn btn-primary header-cta" id="header-signup">Sign Up
+            <a href="https://bitbetwin.cc/registration/" class="btn btn-primary header-cta cta-to-offer" id="header-signup">Sign Up
                 Now</a>
         </div>
     </header>
@@ -100,7 +100,7 @@
                     <span>24/7 Support</span>
                 </div>
             </div>
-            <a href="https://bitbetwin.cc/registration/" class="btn btn-cta btn-large pulse" id="hero-cta">
+            <a href="https://bitbetwin.cc/registration/" class="btn btn-cta btn-large pulse cta-to-offer" id="hero-cta">
                 🎁 Claim Your $20 Bonus Now
             </a>
             <p class="hero-note">No deposit required • Instant activation</p>
@@ -141,7 +141,7 @@
                     <div class="promo-icon">🎁</div>
                     <h3 class="promo-title">$20 Sign Up Bonus</h3>
                     <p class="promo-desc">Create your account and receive $20 FREE instantly — no deposit needed!</p>
-                    <a href="https://bitbetwin.cc/registration/" class="btn btn-primary" id="promo-signup">Get $20
+                    <a href="https://bitbetwin.cc/registration/" class="btn btn-primary cta-to-offer" id="promo-signup">Get $20
                         Free</a>
                 </div>
                 <div class="promo-card">
@@ -149,7 +149,7 @@
                     <div class="promo-icon">💰</div>
                     <h3 class="promo-title">100% Match up to $1,000</h3>
                     <p class="promo-desc">Double your first deposit and get 5 Free Plays on top!</p>
-                    <a href="https://bitbetwin.cc/deposit/" class="btn btn-secondary" id="promo-deposit1">Claim
+                    <a href="https://bitbetwin.cc/deposit/" class="btn btn-secondary cta-to-offer" id="promo-deposit1">Claim
                         Bonus</a>
                 </div>
                 <div class="promo-card">
@@ -157,7 +157,7 @@
                     <div class="promo-icon">🎯</div>
                     <h3 class="promo-title">20% Reload Bonus</h3>
                     <p class="promo-desc">Keep the momentum going with a 20% bonus on your second deposit.</p>
-                    <a href="https://bitbetwin.cc/deposit/" class="btn btn-secondary" id="promo-deposit2">Deposit
+                    <a href="https://bitbetwin.cc/deposit/" class="btn btn-secondary cta-to-offer" id="promo-deposit2">Deposit
                         Now</a>
                 </div>
                 <div class="promo-card">
@@ -165,7 +165,7 @@
                     <div class="promo-icon">🌟</div>
                     <h3 class="promo-title">50% Bonus + $15 Free</h3>
                     <p class="promo-desc">Your third deposit brings 50% extra plus $15 in Free Plays!</p>
-                    <a href="https://bitbetwin.cc/deposit/" class="btn btn-secondary" id="promo-deposit3">Get Bonus</a>
+                    <a href="https://bitbetwin.cc/deposit/" class="btn btn-secondary cta-to-offer" id="promo-deposit3">Get Bonus</a>
                 </div>
             </div>
         </div>
@@ -271,7 +271,7 @@
                 </div>
             </div>
             <div class="steps-cta">
-                <a href="https://bitbetwin.cc/registration/" class="btn btn-cta btn-large pulse" id="steps-cta">
+                <a href="https://bitbetwin.cc/registration/" class="btn btn-cta btn-large pulse cta-to-offer" id="steps-cta">
                     🚀 Get Started Now — It's Free!
                 </a>
             </div>
@@ -285,10 +285,10 @@
                 <h2 class="cta-title">🎰 Ready to Win Big?</h2>
                 <p class="cta-subtitle">Join thousands of winners at BitBetWin. Your $20 FREE bonus is waiting!</p>
                 <div class="cta-buttons">
-                    <a href="https://bitbetwin.cc/registration/" class="btn btn-cta btn-large pulse" id="final-signup">
+                    <a href="https://bitbetwin.cc/registration/" class="btn btn-cta btn-large pulse cta-to-offer" id="final-signup">
                         🎁 Claim $20 Free Bonus
                     </a>
-                    <a href="https://bitbetwin.cc" class="btn btn-outline" id="final-explore">
+                    <a href="https://bitbetwin.cc" class="btn btn-outline cta-to-offer" id="final-explore">
                         Explore BitBetWin →
                     </a>
                 </div>
@@ -353,19 +353,18 @@
         </div>
     </footer>
 
-    <!-- URL Parameter Preservation Script -->
+    <!-- Click Tracking Script -->
     <script>
         (function () {
-            // Preserve URL parameters for all CTA links
-            const urlParams = window.location.search;
-            if (urlParams) {
-                const links = document.querySelectorAll('a[href^="https://bitbetwin.cc"]');
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    const separator = href.includes('?') ? '&' : '?';
-                    link.setAttribute('href', href + separator + urlParams.substring(1));
-                });
-            }
+            const url = new URL(window.location.href);
+            const clickid = url.searchParams.get('clickid');
+            if (!clickid) return;
+
+            const offerUrlBase = 'https://bitbetwin.cc/lp/redtrack/?clickid=';
+
+            document.querySelectorAll('.cta-to-offer').forEach(function (a) {
+                a.href = offerUrlBase + encodeURIComponent(clickid);
+            });
         })();
     </script>
 </body>
